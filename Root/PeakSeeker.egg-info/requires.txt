@@ -1,0 +1,4 @@
+pygame
+numpy
+perlin-noise
+requests

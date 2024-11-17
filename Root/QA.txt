@@ -1,0 +1,155 @@
+DESCRIPTION OF BUGS THAT CAME UP AND HOW I NOTICED AND FIXED THEM
+
+
+Below is a summary of the main issues encountered during the development of this project. While other minor issues arose, they were resolved quickly or required only minor adjustments. One of the initial challenges involved setting up the development environment and ensuring all necessary packages were correctly installed. As I was getting familiar with Pygame, it took some time to understand its structure, how various elements interact and how to effectively organize files across directories. 
+
+Bugs in the Game:
+
+1. Swapped Coordinates During Hover on Grid Cells
+   - Description: When hovering over grid cells, the highlighted cell did not match the mouse position due to swapped x and y coordinates.
+   - Discovery: The grid cell highlight was offset, revealing a mismatch between the hover effect and the intended cell.
+   - Solution: Corrected the coordinate reference in the draw_grid function to ensure proper alignment with the mouse hover.
+
+2. Inefficient Event Handling in Main Game Loop
+   - Description: Event-handling logic cluttered the main game loop, reducing maintainability and readability.
+   - Discovery: Managing the game loop became increasingly challenging as more tasks were integrated into a single section.
+   - Solution: Refactored code to separate event handling and game state management, which improved code readability and modularity.
+
+3. Game Over Screen Not Displaying Correctly
+   - Description: The "Game Over" screen failed to appear when the player lost all lives, and the game continued running in the background.
+   - Discovery: After the player lost all lives, the game did not display the expected "Game Over" screen, nor did it stop gameplay.
+   - Solution: Added a conditional check to trigger the game-over state and display the "Game Over" screen with Retry and Menu buttons.
+
+Optimizations:
+
+1. Refactoring for Code Readability: Refactored event handling and game state resetting to improve readability and maintainability.
+
+2. Optimized Island Height Calculation
+   - Description: Island heights were recalculated multiple times unnecessarily, leading to redundant computations.
+   - Solution: Cached the results of island height calculations, recalculating only when necessary (e.g., during player actions or level resets).
+
+3. Asset Loading Optimization
+   - Description: Repeated loading of assets like sounds and images caused minor delays.
+   - Solution: Moved asset loading to an initialization function, ensuring each asset loads only once to improve responsiveness during transitions.
+
+
+
+
+
+
+
+WAYS I WOULD TEST THE PROJECTS OF OTHER CONTESTANTS
+
+Below are the methods I would use to test the projects of other contestants, based on the types of tests I conducted on my own project and additional areas I would explore. These tests aim to verify core functionality, user interaction and robustness across different implementations.
+
+1. Functional Testing
+Input Validity:
+	Loaded maps with various data structures, including valid 30x30 grids, smaller or larger grids and grids containing negative or non-integer values.
+	Tested edge cases such as all-zero maps (only water) and all-positive maps (a single island) to confirm the game handles them appropriately.
+Island Detection:
+	Verified that the algorithm identifies islands with complex shapes, including diagonal connections and separated clusters of land cells.
+	Ensured that the correct island with the highest average height is consistently identified across multiple maps.
+Game Flow:
+	Simulated guessing different islands and confirmed the game ends after three incorrect guesses or a correct guess.
+	Tested the restart functionality to ensure it properly resets the game state.
+
+2. Usability Testing
+User Interaction:
+	Confirmed that clicking on a cell reliably selects the correct island.
+Visual Feedback:
+	Assessed the clarity of the grid representation, ensuring height differences and water/land cells are visually distinct.
+
+3. Stress Testing
+Performance Under Load:
+	Introduced randomized and high-frequency inputs (e.g., rapidly clicking on different cells) to check for stability and responsiveness.
+
+
+Areas I Would Further Test
+
+Below are additional testing areas I plan to explore more thoroughly in my own project and would also apply when testing other contestants projects. These focus on edge cases, compatibility, accessibility and automation.
+
+4. Edge Cases
+Disconnected Islands:
+	I would test maps with multiple islands having the same average height to verify how ties are handled, ensuring the logic remains fair and consistent.
+
+5. Visual Design and Accessibility
+Accessibility Testing:
+	Evaluate the game for colorblind-friendly designs by simulating various types of color blindness.
+	Test different screen resolutions and aspect ratios to ensure the UI scales appropriately.
+
+6. Compatibility Testing
+Cross-Platform Testing:
+	Run the project on different operating systems and Python versions to verify compatibility and stability.
+Library Dependencies:
+	Ensure all external libraries are properly documented and that the game installs and runs smoothly in different environments.
+
+7. QA Documentation Review
+Error Messages:
+	Trigger errors intentionally, such as incomplete or malformed map data, to check if the game displays clear and actionable error messages.
+Logs and Debugging:
+	Validate that sufficient logging/debugging information is available to help trace and resolve potential issues.
+
+8. Test Automation
+Automated Testing:
+	Plan to implement automated test scripts to validate core functionalities like grid generation, island detection and gameplay mechanics for more efficient testing.
+
+
+
+
+IMPROVEMENTS/FEATURES I WOULD MAKE IF I HAD A MAGIC WAND
+
+To enhance the game and make it more accessible, I would introduce colorblindness options in the settings. These options would allow players with color vision deficiencies to differentiate between elements like land, water and obstacles effectively. Additionally, I would enable customization of the grid and cell size, ensuring the game is adaptable to different screen sizes and player preferences. To further immerse players, I would incorporate dynamic sound design, where the background music and sound effects change based on the environment or gameplay conditions, adding depth to the experience. To keep players engaged and motivated, achievements and challenges would be introduced, rewarding players for completing specific tasks or reaching milestones, encouraging replayability. Finally, a tutorials would be added to guide new players through the basic mechanics and progressively introduce more complex elements, ensuring that they feel comfortable and confident as they progress through the game.
+
+Building on the core mechanic of identifying the island with the highest average height, I would develop the game into a more immersive and expansive experience by introducing a narrative-driven progression. The story would revolve around recovering ancient artifacts hidden on islands with the highest average height, left by a mysterious scientist from the past. These artifacts are crucial for building a spaceship capable of saving humanity from a dying planet. As spaceship captains, players would have a limited amount of resources and fuel, creating a sense of urgency and making accurate guesses critical to success. Each choice would be important, as players can only afford a few mistakes before running out of resources.
+
+The narrative would unfold across multiple levels, each presenting a new challenge in the search for artifacts. Early levels would feature simple, small maps, giving players a chance to learn the mechanics and gradually get familiar with the core gameplay. As players progress, the difficulty would increase—maps would become larger and the grid cells would become smaller, making calculations more complex. Additionally, new game mechanics would be introduced, such as weather conditions, fog, or time-limited decisions that would further complicate the island assessments.
+
+Players could encounter environmental obstacles like dense forests, stormy weather, or night-time scenarios, all of which would hinder their ability to make accurate predictions. Over time, players would unlock upgrades and items—such as night vision or weather sensors—that would help them navigate these challenges. By advancing through levels and collecting artifacts, players would not only progress in the game but also uncover pieces of the story, slowly revealing the scientist’s mysterious past and the secrets behind the dying planet. This narrative-driven progression would turn the simple act of identifying islands into a crucial step in saving humanity, making every decision feel more impactful.
+
+In this expanded game world, players would be rewarded with a variety of tools and upgrades as they collect artifacts, helping them overcome the environmental obstacles that make assessing islands more difficult. These tools would not only aid in navigating challenges but also deepen the strategic elements of the game. For example, players could unlock night vision to enhance visibility on dark maps, allowing them to make better decisions when exploring islands during nighttime. Similarly, weather sensors or clearing tools could help clear visual obstructions such as clouds, storms, or dense fog, making it easier to assess the terrain and height of the islands accurately.
+
+In addition to these environmental aids, players would unlock military units for defense. Though the player wouldn’t directly control these units, they would be crucial for navigating dangerous islands with enemy presence. If an island is overrun by hostile creatures or rival factions, the player could deploy army units to fight off these enemies, ensuring safe passage for exploration. However, these units would be limited in number and would be used sparingly—losing too many could affect the player’s ability to continue exploring effectively. These tools and upgrades would create a balance between resource management and strategic thinking, encouraging players to think carefully about which obstacles to prioritize and how to allocate their resources most efficiently.
+
+To keep the gameplay experience fresh and challenging, the core objective could shift from time to time. Rather than always searching for the island with the highest average height, players could be tasked with identifying the lowest island, pinpointing the highest and lowest points on the map, or even seeking out underwater features such as submerged artifacts. These changes would not only diversify the types of challenges players face but also encourage creative problem-solving. To add an extra layer of complexity, certain scenarios might require players to interpret maps in unconventional formats, like grids represented by letters. This would happen due to a malfunction with the main camera, forcing players to rely on limited tools like the ship’s emergency system, which only displays grid coordinates in lettered form. This shift would require players to adapt quickly, further enhancing the strategic depth of the game.
+
+Expanding the game's setting beyond a single planet, I would introduce a multi-planetary exploration component. Each planet would present its own unique set of zones, environmental conditions and challenges. For instance, some planets might lack water entirely, meaning players would need to identify the highest mountain ranges rather than islands. In these cases, players would have to recognize the altitude at which mountains begin, adding a new layer of decision-making and analysis. Other planets might have entirely different color schemes, affecting how players assess terrain height, or they could feature extreme weather conditions, like blizzards or sandstorms, which would obscure visibility and make island identification even more challenging. By constantly altering the gameplay environment, this multi-planetary exploration would not only keep the experience engaging but also test the player’s adaptability and problem-solving abilities.
+
+Inspired by games like Papers Please, I would implement a progressive difficulty system that gradually increases the complexity of the game as players advance through levels. Each new level would introduce more intricate mechanics that not only require quicker thinking but also involve a degree of risk. This could include added environmental hazards or time constraints, forcing players to make decisions under pressure. By using randomly generated maps, no two playthroughs would be the same, ensuring a high level of replayability and giving players the challenge of adapting to new scenarios each time they play.
+
+To further enrich the gameplay experience, I would introduce a tech tree system. As players progress, they would be able to unlock a variety of tools and upgrades that make their task easier or more efficient. For instance, they could invest in tools to clear fog, improve night visibility, or enhance data analysis capabilities to better assess the terrain. Deciding which technologies to unlock would add an important strategic layer, as players must anticipate the challenges they will face on upcoming maps. The tech tree would offer meaningful choices, allowing players to tailor their approach based on the difficulty and complexity of the maps they’re about to encounter.
+
+Additionally, I would introduce an archipelago selection system. Each archipelago would consist of a number of procedurally generated maps and players could choose the one they want to tackle next. Based on the information available about each archipelago, players would have a general idea of the types of challenges they’ll face, such as environmental factors, map size or visibility issues. This foresight would allow players to make more strategic decisions, selecting the most favorable paths and preparing by unlocking the necessary tools before embarking on their journey. This system would not only add variety to the gameplay but also allow for deeper planning and resource management.
+
+Finally, introducing a multiplayer mode would add a competitive dimension to the game. In this mode, two or more players would compete to identify the correct islands across a set of randomly generated maps. Everyone would face identical maps to ensure fairness, with the race against time being a critical factor in determining the winner. Players would have to rely on their strategic thinking and quick decision-making, as skill in analyzing the environment and predicting the best island to choose would ultimately be what sets them apart. This would encourage not only individual mastery of the game mechanics but also foster a sense of competition and challenge.
+
+Taking all of these elements into account, I believe these concepts could evolve into a full game. The game would combine strategic decision-making, environmental challenges, a compelling narrative and a dynamic difficulty curve. With its procedural generation, tech trees and a variety of obstacles, the game would offer endless replayability and a unique experience each time the player embarks on a new adventure. Multiplayer features would bring an additional layer of excitement, while the core gameplay would continue to offer a satisfying challenge for solo players. This would create an engaging, ever-evolving puzzle game that keeps players coming back for more.
+
+
+
+
+
+HOW SOME FACTORS AFFECT MY SOLUTION
+
+Grid Size: I don't think increasing the grid size (e.g., to 50x50) would have a significant impact on the game's performance, since the algorithms for island detection should be able to handle larger grids. However, the problem might arise with the UI, as the current design doesn't adjust the cell size when the grid increases, which could make the game less readable or harder to play if the map gets too large.
+
+Number of Lives: I think a higher number of lives would be useful for beginners, so they can get used to the gameplay. However, for later stages of the game, a smaller number of lives (e.g., 3) would be sufficient because the gameplay itself isn't too demanding, and players can continue playing for a long time even with fewer attempts.
+
+Island Distribution and Size: A smaller number of islands makes the game easier, while a larger number of islands increases the challenge. I also think it's easier to estimate the average height when all the islands are of similar size, as opposed to having both small and large islands. This variation in size can make the game more challenging, as players need to pay more attention to islands with different dimensions.
+
+Height Distribution: I think that if the heights of the cells are too similar, it becomes difficult to distinguish between the colors representing those heights, which could make the game harder to play. This would reduce the clarity of the game and make it visually challenging, especially if the colors are too similar to each other.
+
+Graphics and Hover Effect: I think the hover effect significantly helps in identifying the edges of the islands, especially when they are connected diagonally. This removes the ambiguity and makes it easier for players to see which cells belong to the same island, which enhances interaction and the overall user experience.
+
+Feedback and Sound Effects: By including a scoring system and keeping track of lives, it becomes clear whether the player has guessed the correct island or not. Additionally, adding sound effects for correct or incorrect guesses would further improve feedback, which would increase player engagement and add an extra layer to the game. Although I didn't have enough time to implement sound effects, I think this would have improved the overall experience.
+
+
+
+
+
+
+
+
+
+
+
+
